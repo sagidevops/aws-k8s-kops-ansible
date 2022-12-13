@@ -55,7 +55,7 @@
 
 # Sometimes, the role is not yet propagated accross all regions. Hence the loop.
 - name: Create the lambda using AWS CLI
-  command: "aws lambda create-function --function-name {{ lambda_name }} --role {{ role_arn }} --handler tagging_lambda.lambda_handler --runtime python2.7 --timeout 60 --memory 128 --zip-file fileb:///tmp/tagging_lambda.zip --region {{ aws_region }} --output json"
+  command: "aws lambda create-function --function-name {{ lambda_name }} --role {{ role_arn }} --handler tagging_lambda.lambda_handler --runtime python3.7 --timeout 60 --memory 128 --zip-file fileb:///tmp/tagging_lambda.zip --region {{ aws_region }} --output json"
   register: create_lambda_result
   until: create_lambda_result.stdout.find('FunctionArn') != -1
   retries: 10
